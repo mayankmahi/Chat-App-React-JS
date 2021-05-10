@@ -18,7 +18,14 @@ const ChatFeed = (props) => {
       return (
         <div key={`msg_${index}`} style={{ width: "100%" }}>
           <div className="message-block">
-            {isMyMessage ? <MyMessage message={message} /> : <TheirMessage message={message} lastMessage={messages[lastMessageKey]} />}
+            {isMyMessage ? (
+              <MyMessage message={message} />
+            ) : (
+              <TheirMessage
+                message={message}
+                lastMessage={messages[lastMessageKey]}
+              />
+            )}
           </div>
           <div
             className="read-receipts"
@@ -34,21 +41,21 @@ const ChatFeed = (props) => {
     });
   };
 
-  if(!chat) return "Loading...";
+  if (!chat) return "Loading...";
 
   return (
     <div className="chat-feed">
-        <div className="chat-title-container">
-            <div className="chat-title">{chat.title}</div>
-                <div className="chat-subtitle">
-                    {chat.peopel.map((person) => `${person.person.username}`)}
-                </div>
+      <div className="chat-title-container">
+        <div className="chat-title">{chat.title}</div>
+        <div className="chat-subtitle">
+          {chat.people.map((person) => `${person.person.username}`)}
         </div>
-        {renderMessages()}
-        <div style={{ height: '100px' }} />
-        <div className="message-form-container">
-            <MessageForm  {...props } chatId={activeChat} />
-        </div>
+      </div>
+      {renderMessages()}
+      <div style={{ height: "100px" }} />
+      <div className="message-form-container">
+        <MessageForm {...props} chatId={activeChat} />
+      </div>
     </div>
   );
 };
