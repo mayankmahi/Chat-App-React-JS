@@ -22,7 +22,7 @@ const LoginForm = () => {
             localStorage.setItem('password', password);
 
             window.location.reload();
-        } catch(err)
+        } catch(error)
     }
 
     return (
